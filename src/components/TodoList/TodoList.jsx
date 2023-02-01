@@ -14,7 +14,6 @@ const TodoList = ({ filter }) => {
     // 새로운 투두를 todos에 업데이트 해야 함
     setTodos([...todos, todo]);
   };
-
   const handleUpdate = updated => {
     // 업데이트된 아이디와 동일하다면 업데이트로 바꿔줌
     setTodos(todos.map(el => (el.id === updated.id ? updated : el)));
