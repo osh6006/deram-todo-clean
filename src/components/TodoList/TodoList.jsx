@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
@@ -6,10 +6,7 @@ import styles from "./TodoList.module.css";
 // 투두 에서는 전체적인 데이터를 보여주는 역할만 한다.
 
 const TodoList = ({ filter }) => {
-  const [todos, setTodos] = useState([
-    { id: "123", text: "장보기", status: "active" },
-    { id: "1234", text: "공부하기", status: "active" },
-  ]);
+  const [todos, setTodos] = useState(() => readTodosFromLocalStorage());
 
   const handleAdd = todo => {
     // 새로운 투두를 todos에 업데이트 해야 함
@@ -23,6 +20,10 @@ const TodoList = ({ filter }) => {
     // 삭제된 아이디를 제외한 배열을 리턴
     setTodos(todos.filter(el => el.id !== deleted.id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const filtered = getFilteredItems(todos, filter);
 
@@ -48,6 +49,11 @@ function getFilteredItems(todos, filter) {
     return todos;
   }
   return todos.filter(todo => todo.status === filter);
+}
+
+function readTodosFromLocalStorage() {
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
 }
 
 export default TodoList;
