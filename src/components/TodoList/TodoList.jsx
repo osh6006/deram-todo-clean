@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
+import styles from "./TodoList.module.css";
 
 // 투두 에서는 전체적인 데이터를 보여주는 역할만 한다.
 
@@ -26,8 +27,8 @@ const TodoList = ({ filter }) => {
   const filtered = getFilteredItems(todos, filter);
 
   return (
-    <section>
-      <ul>
+    <section className={styles.container}>
+      <ul className={styles.list}>
         {filtered.map(item => (
           <Todo
             key={item.id}

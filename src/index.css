@@ -4,6 +4,11 @@
   --color-grey: #d1d1d1;
   --color-text: #22243b;
   --color-accent: #f15e03;
+  --color-white: white;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -25,6 +30,7 @@ body {
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
   );
+  font-size: 1.2rem;
 }
 
 #root {
